@@ -26,7 +26,9 @@ function Home() {
   }, [value]);
 
   useEffect(() => {
-    setValue("");
+    if (!eliminating) {
+      setValue("");
+    }
   }, [eliminating]);
 
   const updateValue = (event) => {

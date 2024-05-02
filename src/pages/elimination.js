@@ -3,30 +3,33 @@ import "../index.css";
 
 const Elimination = (props) => {
   const [items, setItems] = useState([...props.items]);
-  const [currentItems, setCurrentItems] = useState([]);
-  const [showItems, setShowItems] = useState(false);
+  const [currentChoices, setCurrentChoices] = useState([]);
+  const [showAllItems, setShowAllItems] = useState(false);
   const [timeElapsed, setTimeElapsed] = useState(0);
 
-  const decisionTime = 1000; // 1 / 100 Seconds
+  const decisionTime = 10000; // ms
+  const decisionTimeUpdateInterval = 10;
 
+  // Get new choices and refresh decision time when items change
   useEffect(() => {
-    setCurrentItems(getTwoItems());
+    setCurrentChoices(getTwoItems());
     setTimeElapsed(0);
   }, [items]);
 
+  // Update timeElapsed every 10ms
   useEffect(() => {
     if (timeElapsed >= decisionTime) {
-      setCurrentItems(getTwoItems());
+      setCurrentChoices(getTwoItems());
       setTimeElapsed(0);
     }
-    const interval = setInterval(incrementProgress, 10);
+    const interval = setInterval(incrementProgress, decisionTimeUpdateInterval);
 
     return () => clearInterval(interval);
   }, [timeElapsed]);
 
   const incrementProgress = () => {
     if (timeElapsed < decisionTime) {
-      setTimeElapsed(timeElapsed + 1);
+      setTimeElapsed(timeElapsed + decisionTimeUpdateInterval);
     }
   };
 
@@ -72,12 +75,12 @@ const Elimination = (props) => {
     <div>
       <h1>Pick the one you prefer</h1>
       <div className="elimination-choices">
-        <button onClick={() => removeItem(currentItems[1])}>
-          {currentItems[0]}
+        <button onClick={() => removeItem(currentChoices[1])}>
+          {currentChoices[0]}
         </button>
         <div className="mini-spacer"></div>
-        <button onClick={() => removeItem(currentItems[0])}>
-          {currentItems[1]}
+        <button onClick={() => removeItem(currentChoices[0])}>
+          {currentChoices[1]}
         </button>
       </div>
       {
@@ -93,11 +96,11 @@ const Elimination = (props) => {
           {items.length} / {props.items.length} items left
         </h1>
         <div className="mini-spacer"></div>
-        <button onClick={() => setShowItems(!showItems)}>
+        <button onClick={() => setShowAllItems(!showAllItems)}>
           <h1>Show items</h1>
         </button>
       </div>
-      {showItems && (
+      {showAllItems && (
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div className="list-container">
             {props.items.map((item, index) => {
@@ -108,7 +111,7 @@ const Elimination = (props) => {
                 };
                 return (
                   <div
-                    key={index}
+                    key={item}
                     className="flex-container"
                   >
                     <p

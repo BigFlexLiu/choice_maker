@@ -1,6 +1,6 @@
 "../index.css";
 
-function Guide(props) {
+function Tutorial(props) {
   return (
     <div className="App">
       <div style={{ height: "10vh"}}></div>
@@ -36,4 +36,4 @@ function Guide(props) {
   );
 }
 
-export default Guide;
+export default Tutorial;

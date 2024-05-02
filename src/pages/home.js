@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import "../index.css";
 import Elimination from "./elimination";
-import Guide from "./guide";
+import Tutorial from "./tutorial";
 
 function Home() {
-  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [list, setList] = useState([]);
   const [eliminating, setEliminating] = useState(false);
   const [isTutorialShown, setIsTutorialShown] = useState(false);
 
+  // Remove duplicates and empty strings
   useEffect(() => {
     if (list.length !== new Set(list).size) {
       setList([...new Set(list)]);
@@ -21,22 +22,24 @@ function Home() {
     }
   }, [list]);
 
+  // Split input by comma or new line
   useEffect(() => {
-    setList(value.split(/[\n,]+/).map((item) => item.trim()));
-  }, [value]);
+    setList(inputValue.split(/[\n,]+/).map((item) => item.trim()));
+  }, [inputValue]);
 
+  // Reset input value
   useEffect(() => {
     if (!eliminating) {
-      setValue("");
+      setInputValue("");
     }
   }, [eliminating]);
 
-  const updateValue = (event) => {
-    setValue(event.target.value);
+  const updateInputValue = (event) => {
+    setInputValue(event.target.value);
   };
 
   if (!isTutorialShown) {
-    return <Guide setIsTutorialShown={setIsTutorialShown}></Guide>;
+    return <Tutorial setIsTutorialShown={setIsTutorialShown}></Tutorial>;
   }
 
   if (eliminating) {
@@ -53,9 +56,9 @@ function Home() {
       style={{ width: "60vw" }}
       label="Add items separated by a comma or a new line"
       variant="outlined"
-      value={value}
+      value={inputValue}
       multiline={true}
-      onChange={updateValue}
+      onChange={updateInputValue}
     ></TextField>
   );
 
@@ -65,7 +68,7 @@ function Home() {
       <div>{input}</div>
       <div className="list-container">
         {list.map((item, index) => (
-          <p className="list-item">{item}</p>
+          <p key={item} className="list-item">{item}</p>
         ))}
       </div>
       <div

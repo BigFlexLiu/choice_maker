@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import "../index.css";
 import Elimination from "./elimination";
-import Tutorial from "./tutorial";
+import Introduction from "./introduction";
 
 function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -39,7 +39,7 @@ function Home() {
   };
 
   if (!isTutorialShown) {
-    return <Tutorial setIsTutorialShown={setIsTutorialShown}></Tutorial>;
+    return <Introduction setIsTutorialShown={setIsTutorialShown}></Introduction>;
   }
 
   if (eliminating) {
@@ -65,6 +65,7 @@ function Home() {
   return (
     <div className="App">
       <div className="spacer"></div>
+      <h1>Add Items</h1>
       <div>{input}</div>
       <div className="list-container">
         {list.map((item, index) => (

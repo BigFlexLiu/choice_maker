@@ -57,16 +57,29 @@ const Elimination = (props) => {
 
   if (items.length === 1) {
     return (
-      <div
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <h1>The best choice is: {items[0]}</h1>
-        <button onClick={() => props.setEliminating(false)}><h1>Make another choice</h1></button>
+      <div>
+        <div
+          style={{
+            position: "fixed",
+            top: "30%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <h1>The best choice is: {items[0]}</h1>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+        <button onClick={() => props.setEliminating(false)}>
+          <h1>Make another choice</h1>
+        </button>
+        </div>
       </div>
     );
   }

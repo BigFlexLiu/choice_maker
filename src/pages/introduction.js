@@ -1,20 +1,19 @@
 "../index.css";
 
-function Tutorial(props) {
+function Introduction(props) {
   return (
     <div className="App">
       <div style={{ height: "10vh"}}></div>
-      <h1>Motivation</h1>
+      <h1>Decision Is Hard When Given Many Items</h1>
       <p className="center-text">
-        When given more than a handful of choices at once, people tend to do worse at
+        When given more than a handful of choices at once, we tend to do worse at
         evaluating them
       </p>
       <p className="center-text">
-        This game will let you consider a pair of items at a time to bypass this
-        issue
+        You can easily overcome this problem by considering a pair of items at a time
       </p>
 
-      <h1>Decision Game</h1>
+      {/* <h1>Decision Game</h1>
       <p className="center-text">Add items separated by new line or comma</p>
       <p className="center-text">Click start when you're ready</p>
       <p className="center-text">
@@ -26,7 +25,7 @@ function Tutorial(props) {
       </p>
       <p className="center-text">This continues until only one item is left</p>
 
-      <div style={{ height: "5vh"}}></div>
+      <div style={{ height: "5vh"}}></div> */}
       <div className="button" 
         onClick={() => props.setIsTutorialShown(true)}
       >
@@ -36,4 +35,4 @@ function Tutorial(props) {
   );
 }
 
-export default Tutorial;
+export default Introduction;

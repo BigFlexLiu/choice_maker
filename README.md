@@ -1,3 +1,15 @@
+# Motivation
+
+Decision making can be hard, especially when there are more than a few options but one choice.
+We generally are likely to choose the optimal solution and are less satisfied with the decision even when it is optimal.
+This is a common issue to encounter in many aspects of life, for example:
+- Selecting a single item among the tens or even hundreds of menu options in a restaurant
+- Selecting a drink from a variety of flavours offered by the same brand
+- Selecting a cloth to wear which is greatly influenced by occasion, weather, mood, and more
+
+This program provides a simple interface to help eliminate options one by one by comparing a pair at a time
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
